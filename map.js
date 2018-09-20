@@ -123,13 +123,15 @@ function initMap() {
     position: denver
   });
   marker.setMap(map);
-  google.maps.event.addListener(marker,'click',function() {
+  google.maps.event.addListener(marker, 'click', function() {
     var pos = map.getZoom();
     map.setZoom(20);
     map.setCenter(marker.getPosition());
-    window.setTimeout(function(){map.setZoom(pos);},3000);
+    window.setTimeout(function() {
+      map.setZoom(pos);
+    }, 3000);
   });
-
+  //---------------------------------------
   var princeton = new google.maps.LatLng(37.356488, -80.938093);
   var mapCanvas2 = document.getElementById("myMap2");
   var mapOptions2 = {
@@ -142,7 +144,7 @@ function initMap() {
     position: princeton
   });
   marker2.setMap(map2);
-
+  //---------------------------------------
   var iga = new google.maps.LatLng(35.323333, -81.174591);
   var mapCanvas3 = document.getElementById('myMap3');
   var mapOptions3 = {
@@ -156,7 +158,7 @@ function initMap() {
     animation: google.maps.Animation.BOUNCE
   });
   marker3.setMap(map3);
-
+  //---------------------------------------
   var myCenter4 = new google.maps.LatLng(35.323333, -81.174591);
   var mapCanvas4 = document.getElementById('myMap4');
   var mapOptions4 = {
@@ -172,7 +174,7 @@ function initMap() {
     strokeWeight: 2
   });
   drivePath.setMap(map4);
-
+  //---------------------------------------
   var myCenter5 = new google.maps.LatLng(35.323333, -81.174591);
   var mapCanvas5 = document.getElementById('myMap5');
   var mapOptions5 = {
@@ -181,14 +183,14 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
   var map5 = new google.maps.Map(mapCanvas5, mapOptions5);
-  var drivePath = new google.maps.Polygon({
+  var drivePath2 = new google.maps.Polygon({
     path: [princeton, denver, iga, myCenter5],
     strokeColor: '#0000FF',
     strokeOpacity: 1.0,
     strokeWeight: 2
   });
-  drivePath.setMap(map5);
-
+  drivePath2.setMap(map5);
+  //---------------------------------------
   var myCenter6 = new google.maps.LatLng(29.9773, 31.1325);
   var mapCanvas6 = document.getElementById('myMap6');
   var mapOptions6 = {
@@ -198,20 +200,44 @@ function initMap() {
   };
   var map6 = new google.maps.Map(mapCanvas6, mapOptions6);
   var pyramid = new google.maps.Circle({
-    center:myCenter6,
+    center: myCenter6,
     radius: 100,
     strokeColor: '#0000FF',
-    strokeOpacity: .7,
+    strokeOpacity: 0.7,
     strokeWeight: 1,
     fillColor: '#0000FF',
-    fillOpacity:0.4
+    fillOpacity: 0.4
   });
-  var pyrMarker = new google.maps.Marker({position:myCenter6});
+  var pyrMarker = new google.maps.Marker({
+    position: myCenter6
+  });
   var infowindow = new google.maps.InfoWindow({
     content: "The Great Pyramids of Egypt!"
   });
   pyrMarker.setMap(map6);
-  infowindow.open(map6,pyrMarker);
+  infowindow.open(map6, pyrMarker);
   pyramid.setMap(map6);
+  //---------------------------------------
+  var myCenter7 = new google.maps.LatLng(51.178976, -1.826236);
+  var mapCanvas7 = document.getElementById('myMap7');
+  var mapOptions7 = {
+    center: myCenter7,
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.SATELLITE
+  };
+  var map7 = new google.maps.Map(mapCanvas7, mapOptions7);
+  google.maps.event.addListener(map7, 'click', function(event) {
+    placemarker(map7, event.LatLng);
+  });
 
+  function placemarker(map, location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+    });
+    infowindow.open(map7,marker);
+  }
 }
