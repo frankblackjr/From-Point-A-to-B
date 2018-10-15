@@ -1,4 +1,3 @@
-function initMap() {
   /*Below is code to produce a map above my apartment.
 
                 ****DEFININGING A MAP JS****
@@ -111,6 +110,7 @@ function initMap() {
 
 
   */
+  function initMap() {
   var denver = new google.maps.LatLng(35.449359, -80.996762);
   var mapCanvas = document.getElementById("myMap");
   var mapOptions = {
@@ -144,6 +144,11 @@ function initMap() {
     position: princeton
   });
   marker2.setMap(map2);
+
+
+
+
+
   //---------------------------------------
   var iga = new google.maps.LatLng(35.323333, -81.174591);
   var mapCanvas3 = document.getElementById('myMap3');
@@ -235,9 +240,9 @@ function initMap() {
       position: location,
       map: map
     });
-    var infowindow = new google.maps.InfoWindow({
+    var infowindow1 = new google.maps.InfoWindow({
       content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
     });
-    infowindow.open(map7,marker);
+    infowindow1.open(map7,marker);
   }
 }

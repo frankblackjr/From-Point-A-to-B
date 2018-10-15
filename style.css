@@ -10,3 +10,8 @@ h1 {
 #myMap {
   float: left;
 }
+#latLong1 {
+  display: inline;
+  float: left;
+  width: 800px;
+}
